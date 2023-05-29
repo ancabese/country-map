@@ -1,17 +1,14 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
-
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import dynamic from "next/dynamic";
+import { GRAPHQL_URL } from "@/utils/constants";
 
 const DynamicMap = dynamic(() => import("../components/Map"), {
   ssr: false,
 });
 
 const client = new ApolloClient({
-  uri: "https://countries.trevorblades.com/",
+  uri: GRAPHQL_URL,
   cache: new InMemoryCache(),
 });
 

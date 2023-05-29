@@ -1,3 +1,36 @@
-.contents > p {
-  margin: 0.5rem;
+.popup {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.flag {
+  font-size: 2rem;
+}
+
+.table {
+  border-top: 1px solid lightgray;
+  margin-top: 0.5em;
+  width: 100%;
+}
+
+.table tr {
+  vertical-align: top;
+}
+
+.table td {
+  padding: 0.3em 0;
+}
+
+.table td:nth-child(1) {
+  font-weight: bold;
+}
+
+.table td:nth-child(2) {
+  padding-left: 0.5em;
+  max-width: 100px;
 }

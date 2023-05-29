@@ -15,7 +15,7 @@ const Map = () => {
   const [markerCoords, setMarkerCoords] =
     useState<Coordinates>(INIT_MARKER_COORDS);
   const [countryCode, setCountryCode] = useState<string | null>(null);
-  const { lat, lng } = markerCoords;
+  const { lat: markerLat, lng: markerLng } = markerCoords;
 
   const {
     isLoading: isoLoading,
@@ -41,9 +41,12 @@ const Map = () => {
           showMarkerPopup(true);
         }
       };
-      fetchCountryIso(fetchCountryIsoRequest(lat, lng), onCountryIsoFetched);
+      fetchCountryIso(
+        fetchCountryIsoRequest(markerLat, markerLng),
+        onCountryIsoFetched
+      );
     }
-  }, [lat, lng, fetchCountryIso]);
+  }, [markerLat, markerLng]);
 
   useEffect(() => {
     countryData && showMarkerPopup(true);

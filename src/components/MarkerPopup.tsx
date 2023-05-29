@@ -9,16 +9,32 @@ const MarkerPopup: FC<{
   return (
     <Popup>
       {countryData && (
-        <div className={styles.contents}>
-          <h2>{countryData.name}</h2>
-          <h3 style={{ color: "gray" }}>{countryData.native}</h3>
-          <p>Capital: {countryData.capital}</p>
-          <p>Flag: {countryData.emoji}</p>
-          <p>Currency: {countryData.currency}</p>
-          <p>
-            Languages:{" "}
-            {countryData.languages.map((lang) => lang.name).join(", ")}
-          </p>
+        <div className={styles.popup}>
+          <div className={styles.header}>
+            <div className={styles.flag}>{countryData.emoji}</div>
+            <div>
+              <h2>{countryData.name}</h2>
+              <h3 style={{ color: "gray" }}>{countryData.native}</h3>
+            </div>
+          </div>
+          <table className={styles.table}>
+            <tbody>
+              <tr>
+                <td>Capital</td>
+                <td>{countryData.capital}</td>
+              </tr>
+              <tr>
+                <td>Currency</td>
+                <td>{countryData.currency}</td>
+              </tr>
+              <tr>
+                <td>Languages</td>
+                <td>
+                  {countryData.languages.map((lang) => lang.name).join(", ")}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
     </Popup>
