@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import dynamic from "next/dynamic";
-import { GRAPHQL_URL } from "@/utils/constants";
+import { GRAPHQL_URL } from "../utils/constants";
 
 const DynamicMap = dynamic(() => import("../components/Map"), {
   ssr: false,

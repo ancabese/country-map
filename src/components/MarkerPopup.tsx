@@ -1,4 +1,4 @@
-import { Country } from "@/interfaces/Country";
+import { Country } from "../interfaces/Country";
 import { FC } from "react";
 import { Popup } from "react-leaflet";
 import styles from "./MarkerPopup.module.css";
@@ -14,7 +14,7 @@ const MarkerPopup: FC<{
             <div className={styles.flag}>{countryData.emoji}</div>
             <div>
               <h2>{countryData.name}</h2>
-              <h3 style={{ color: "gray" }}>{countryData.native}</h3>
+              <h3 className={styles.native}>{countryData.native}</h3>
             </div>
           </div>
           <table className={styles.table}>

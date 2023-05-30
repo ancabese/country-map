@@ -2,14 +2,15 @@ import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import MarkerPopup from "./MarkerPopup";
 import MapConsumer from "./MapConsumer";
 import styles from "./Map.module.css";
-import { INIT_MARKER_COORDS, INIT_ZOOM } from "@/utils/constants";
+import { INIT_MARKER_COORDS, INIT_ZOOM } from "../utils/constants";
 import { useEffect, useRef, useState } from "react";
 import { LatLng, Marker as LeafletMarker, LeafletMouseEvent } from "leaflet";
-import { Coordinates } from "@/interfaces/Coordinates";
+import { Coordinates } from "../interfaces/Coordinates";
 import { useQuery } from "@apollo/client";
-import { GET_COUNTRY } from "@/queries/getCountry";
-import useHttp from "@/hooks/useHttp";
-import { fetchCountryIsoRequest } from "@/requests/fetchCountryIsoRequest";
+import { GET_COUNTRY } from "../queries/getCountry";
+import useHttp from "../hooks/useHttp";
+import { fetchCountryIsoRequest } from "../requests/fetchCountryIsoRequest";
+import InfoBox from "./InfoBox";
 
 const Map = () => {
   const [markerCoords, setMarkerCoords] =
@@ -81,38 +82,36 @@ const Map = () => {
   const showInfoBox = isoLoading || dataLoading || isoError || dataError;
 
   return (
-    <div>
-      <MapContainer
-        className={styles.map}
-        center={INIT_MARKER_COORDS}
-        zoom={INIT_ZOOM}
-      >
-        {showInfoBox && (
-          <div className={styles.info}>
-            {isoLoading && <p>Loading country ISO...</p>}
-            {dataLoading && <p>Loading country data...</p>}
-            {isoError && <p>{isoError}</p>}
-            {dataError && <p>{dataError.message}</p>}
-          </div>
-        )}
-        <MapConsumer onClick={mapClickHandler} />
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    <MapContainer
+      className={styles.map}
+      center={INIT_MARKER_COORDS}
+      zoom={INIT_ZOOM}
+    >
+      {showInfoBox && (
+        <InfoBox
+          isoLoading={isoLoading}
+          dataLoading={dataLoading}
+          isoError={isoError}
+          dataError={dataError}
         />
-        {markerCoords && (
-          <Marker
-            ref={markerRef}
-            position={markerCoords}
-            eventHandlers={{
-              click: markerClickHandler,
-            }}
-          >
-            <MarkerPopup countryData={countryData?.country} />
-          </Marker>
-        )}
-      </MapContainer>
-    </div>
+      )}
+      <MapConsumer onClick={mapClickHandler} />
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      {markerCoords && (
+        <Marker
+          ref={markerRef}
+          position={markerCoords}
+          eventHandlers={{
+            click: markerClickHandler,
+          }}
+        >
+          <MarkerPopup countryData={countryData?.country} />
+        </Marker>
+      )}
+    </MapContainer>
   );
 };
 

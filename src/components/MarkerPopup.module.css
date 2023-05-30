@@ -8,6 +8,10 @@
   gap: 1em;
 }
 
+.native {
+  color: #aaa;
+}
+
 .flag {
   font-size: 2rem;
 }

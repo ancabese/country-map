@@ -3,12 +3,10 @@ import { FC } from "react";
 import { useMapEvents } from "react-leaflet";
 
 const MapConsumer: FC<{
-  onClick?: (data: LatLng) => void;
-  onZoomEnd?: (zoom: number) => void;
-}> = ({ onClick, onZoomEnd }) => {
+  onClick: (data: LatLng) => void;
+}> = ({ onClick }) => {
   const map = useMapEvents({
-    click: (e) => onClick?.(e.latlng),
-    zoomend: () => onZoomEnd?.(map.getZoom()),
+    click: (e) => onClick(e.latlng),
   });
   return null;
 };

@@ -1,14 +1,3 @@
 .map {
   height: 100vh;
 }
-
-.info {
-  position: absolute;
-  bottom: 2vw;
-  left: 2vw;
-  background-color: palegoldenrod;
-  padding: 1em 2em;
-  z-index: 400;
-  color: gray;
-  border-left: 3px solid dodgerblue;
-}
