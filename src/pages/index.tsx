@@ -1,15 +1,21 @@
 import Head from "next/head";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+} from "@apollo/client";
 import dynamic from "next/dynamic";
 import { GRAPHQL_URL } from "../utils/constants";
+import fetch from "cross-fetch";
 
 const DynamicMap = dynamic(() => import("../components/Map"), {
   ssr: false,
 });
 
 const client = new ApolloClient({
-  uri: GRAPHQL_URL,
   cache: new InMemoryCache(),
+  link: new HttpLink({ uri: GRAPHQL_URL, fetch }),
 });
 
 export default function Home() {

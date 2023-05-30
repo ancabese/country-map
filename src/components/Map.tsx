@@ -9,7 +9,7 @@ import { Coordinates } from "../interfaces/Coordinates";
 import { useQuery } from "@apollo/client";
 import { GET_COUNTRY } from "../queries/getCountry";
 import useHttp from "../hooks/useHttp";
-import { fetchCountryIsoRequest } from "../requests/fetchCountryIsoRequest";
+import { getCountryIsoRequestConfig } from "../utils/getCountryIsoRequestConfig";
 import InfoBox from "./InfoBox";
 
 const Map = () => {
@@ -43,7 +43,7 @@ const Map = () => {
         }
       };
       fetchCountryIso(
-        fetchCountryIsoRequest(markerLat, markerLng),
+        getCountryIsoRequestConfig(markerLat, markerLng),
         onCountryIsoFetched
       );
     }
