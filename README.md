@@ -3,7 +3,7 @@ A world map showing information about countries.
 The app uses the following libraries and APIs:
 
 - [react-leaflet](https://react-leaflet.js.org/) library to display the map
-- [geoapify](https://www.geoapify.com/) API to translate geo coordinates into a valid ISO country code (the API uses a personal KEY which is stored in the .env.local file - this file was added to git for convenience reasons, normally it would be added to the .gitignore file to avoid exposure)
+- [geoapify](https://www.geoapify.com/) API to translate geo coordinates into a valid ISO country code (the API uses a personal KEY which is stored in the .env.local file - a file added to .gitignore in order to avoid exposure)
 - the [trevorblades](https://countries.trevorblades.com/) graphQL endpoint to retrieve country information based on the ISO code
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
